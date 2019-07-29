@@ -1,0 +1,64 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title> 
+        Agendar Cita
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissMOdal()">Close</ion-button>
+      </ion-buttons> 
+    </ion-toolbar>  
+  </ion-header>
+  
+  
+  <ion-content>
+    <form #form="ngForm" (ngSubmit) = "generarCita(form)" >
+      <ion-grid>
+        <ion-row color="primary" justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">          
+            <div padding>
+              <ion-list>                 
+                  <ion-item> 
+                      <ion-icon name="calendar" item-start></ion-icon>
+                      <ion-label stacked> Fecha: <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-datetime 
+                          name="fecha"  
+                          ngModel required
+                          displayFormat="YYYY-MM-DD" min="2005" max="2030" 
+                          value="2008-09-02">
+                      </ion-datetime>
+                    </ion-item>
+                  
+                    <ion-item>
+                      <ion-icon name="clock" item-start></ion-icon>
+                      <ion-label stacked> Hora: <ion-text color="danger">*</ion-text></ion-label>
+                      <ion-datetime  name="hora" ngModel required displayFormat="HH:mm:ss"></ion-datetime>                    
+                    </ion-item>   
+                    
+                    <ion-item>
+                      <ion-icon name="paper" item-start></ion-icon>   
+                      <ion-label stacked> Especialidad: <ion-text color="danger">*</ion-text></ion-label>
+                      <ion-select   name="especialidad"  ngModel required value="2" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option  value="2">2</ion-select-option>                     
+                      </ion-select>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="paw" item-start></ion-icon>   
+                        <ion-label stacked> Mascota: <ion-text color="danger">*</ion-text></ion-label>
+                        <ion-select   name="mascota"  ngModel required value="1" okText="Okay" cancelText="Dismiss">
+                          <ion-select-option  value="1">Arisquito</ion-select-option>
+                          <ion-select-option  value="2">Gratus</ion-select-option>
+                          <ion-select-option  value="3">Gratus2</ion-select-option>                       
+                        </ion-select>
+                      </ion-item>                  
+  
+              </ion-list>
+            </div>
+            <div padding>
+                <ion-button color="primary"  size="large" type="submit" [disabled]="form.invalid" expand="block">Agendar</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>
+  

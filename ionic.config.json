@@ -1,0 +1,13 @@
+{
+  "name": "myApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path":"/api",
+      "proxiUrl": "http://192.168.0.18:8080/api"
+    }
+  ]
+}

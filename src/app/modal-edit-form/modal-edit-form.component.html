@@ -1,0 +1,44 @@
+<ion-header translucent>
+    <ion-toolbar>
+      <ion-title>
+        Edite sus datos
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismissMOdal()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <form [formGroup]="myForm" *ngFor ="let item of myArray; let posicion = index" >
+      <ion-grid>
+        <ion-row color="primary" justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">          
+            <div padding>
+              <ion-list>
+                  <ion-item>
+                      <ion-icon name="person" item-start></ion-icon>              
+                      <ion-label stacked> Nombre: <ion-text color="danger">*</ion-text></ion-label>
+                      <ion-input formControlName="name" type="text" placeholder="your name"> {{item.name}} </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon name="mail" item-start></ion-icon>
+                      <ion-label stacked> Email: <ion-text color="danger">*</ion-text></ion-label>
+                      <ion-input formControlName="email" type="email" placeholder="your@email.com" ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                      <ion-icon name="calendar" item-start></ion-icon>
+                      <ion-label stacked> Edad: <ion-text color="danger">*</ion-text></ion-label>
+                      <ion-input formControlName="age" type="number" displayFormat="MM-DD-YYYY" placeholder="your age" ></ion-input>
+                    </ion-item>
+              </ion-list>
+            </div>
+            <div padding>
+              <ion-button  color="primary" (click)="pushModalCtrl()" size="large" type="submit" [disabled]="myForm.invalid" expand="block">Agregar</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-content>
+  
