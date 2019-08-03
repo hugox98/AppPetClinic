@@ -1,60 +1,52 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-    Lista de Citas
+      PetClinic-Citas
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">Log out</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-  <img src="../../assets/pet.png">
 
-<!---ion-content>
-  <ion-card class="ion-padding" *ngFor ="let item of myArray; let posicion = index"            
-            (click)="presentActionSheet()">   
-    {{item.fecha}} |
-    {{item.hora}} |
+
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-item *ngIf="citas.length  == 0">
+    Ninguna cita
+  </ion-item>
+  <ion-card *ngFor="let cita of citas; let i = index;"   color={{(cita.confirmacion)}} >
+    <ion-card-header (click)="action(cita, i)">
+      <ion-card-subtitle *ngIf="cita.confirmacion==0">En Espera <ion-icon name="clock"></ion-icon>  </ion-card-subtitle>
+      <ion-card-subtitle *ngIf="cita.confirmacion==1">Confirmada <ion-icon name="checkmark"></ion-icon></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content (click)="action(cita, i)">
+      <ion-list >
+        <ion-item>
+          <ion-label>Fecha: {{cita.fecha}} Hora: {{cita.hora}}</ion-label>
+        </ion-item>
+        <div *ngFor="let esp of especialidades.especialidades">          
+            <ion-item *ngIf="cita.especialidad === esp.id" >Especialidad: {{esp.name}}</ion-item> 
+        </div>
+        <div  *ngFor="let mascota of mascotas">
+            <ion-item *ngIf="cita.mascota == mascota.id" >Mascota: {{mascota.name}}</ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
 
-  
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button size="small" (click)="presentModal()">
+    <ion-fab-button size="small" (click)="iraCita()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-</ion-content-->
 
-<ion-content padding>    
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-       <ion-refresher-content
-         pullingIcon="arrow-dropdown"
-         pullingText="Pull to refresh"
-         refreshingSpinner="circles"
-          refreshingText="Refreshing..."></ion-refresher-content>
-    </ion-refresher>
-
-    <ion-item *ngIf="citas.length  == 0"> 
-      Ninguna cita
-    </ion-item>
-
-    <ion-card *ngFor="let item of citas; let i = index">    
-      <ion-card-content (click)="action(item, i)">
-        <ion-card-title>
-            <ion-list>
-    
-              <ion-item>
-                <ion-label>  Fecha: {{item.fecha}} </ion-label>
-              </ion-item>
-              <ion-item>
-                  <ion-label> Hora: {{item.hora}} </ion-label>
-                </ion-item>
-            </ion-list>    
-        </ion-card-title>
-      </ion-card-content>
-    </ion-card>
-    
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button size="small" (click)="iraCita()">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>   
 </ion-content>
+
+

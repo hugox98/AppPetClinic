@@ -1,71 +1,44 @@
 .bg-image {
-    background: url('../../assets/clinic.jpg') no-repeat center center fixed;
+    background: url('../../assets/pet3.jpg') no-repeat center center fixed;
     background-size: cover;
   }
   .no-scroll .scroll-content {
     overflow: hidden;
   }
+ 
+  $white-color: rgba(255, 255, 255, 0.219);
+  $height100: 100%;
 
-.avatars{
+.avatars {
     margin: auto;
- }
-$white-color: #fff;
-$height100: 100%;
-
+}
 ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
-}
-
-ion-row {
-    height: $height100;
-}
-
-ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
-}
-
-ion-button {
-    font-weight: 300;
-}
-
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
-}
-$white-color: #fff;
-$height100: 100%;
-
-ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
-}
-
-ion-row {
-    height: $height100;
-}
-
-ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
-}
-
-ion-button {
-    font-weight: 300;
-}
-
-@media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
-}
+      width:100%;
+      height: $height100;
+      opacity: 0.8;
+      -moz-opacity: 0.8;
+      filter: alpha(opacity=80);
+      -khtml-opacity: 0.8;
+  }
+  
+  ion-row {
+      height: $height100;
+  }
+  
+  ion-col {
+      border: 1px solid #247db1;
+      background: $white-color;
+  }
+  
+  ion-button {
+      font-weight: 300;
+  }
+  
+  @media (min-width: 240px) and (max-width: 768px) {
+      ion-grid {
+          background: $white-color;
+      }
+      ion-col {
+          border: none;
+      }
+  }

@@ -123,23 +123,4 @@ export class ModalFormComponent implements OnInit {
   }
 }
 
-/*
 
- save() {
-    console.log("Array antes de citas",this.citas);
-    this.citas = this.myForm.value;
-    console.log("Datos forulario",this.myForm.value);
-    console.log("Array despues de citas",this.citas);
-
-    this.api.saveCitas(this.citas).subscribe(      
-      (data) => { // Success     
-        console.log("citas en el metodo save", this.citas);
-        console.log("Datos formulario", data);          
-        console.log('Fecha: ', this.myForm.value.Fecha);     
-      },
-      (error) =>{
-        console.error("Error al guardar",error);
-      });
-      this.modalCtrl.dismiss( this.myForm.value);
-  }
-*/

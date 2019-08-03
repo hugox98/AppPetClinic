@@ -19,6 +19,10 @@ export class CitasPage implements OnInit {
   newHora;
   user_id;
 
+  mascotas = [];
+  especialidades = [];
+  index;
+
   citas = {
     owner_id: '',
     fecha: '', 
@@ -36,19 +40,41 @@ export class CitasPage implements OnInit {
     public navCtrl: NavController,
     private activateRoute: ActivatedRoute,
     ) {
-   
-    //console.log('user id desde le HomePage', this.id_Owner);
+      this.ionViewDidLoad();
   }
 
   ionViewDidLoad() {
-   
-
+    this.getMascotasID();
+    
   }
 
   ngOnInit() {
-   
+    this.getEspecialidades();   
   }
 
+  getMascotasID(){
+    this.user_id =this.activateRoute.snapshot.paramMap.get('id');
+    this.api.getMascotasUserFindById(this.user_id).subscribe(      
+      (data) => { // Success        
+        this.mascotas = data;
+        console.log("Mis mascotas", this.mascotas);
+      },
+      (error) =>{
+        console.error("Error al consultar",error);
+      });
+      
+  } 
+  getEspecialidades(){    
+    this.api.getEspecialidades().subscribe(      
+      (data) => { // Success  
+        console.log(data + "esss");      
+        this.especialidades = data;
+        console.log("Especialidades", this.especialidades);
+      },
+      (error) =>{
+        
+      });      
+  }
   generarCita(form){ 
     this.user_id =this.activateRoute.snapshot.paramMap.get('id');
     console.log("ID owner para enviar ", this.user_id);
@@ -64,7 +90,7 @@ export class CitasPage implements OnInit {
 
     form.value.fecha = this.newFecha;
     form.value.hora = this.newHora;
-    form.value.owner_id = this.user_id;
+    form.value.owner_id = this.user_id;    
     form.value.confirmacion = 0;
         
     this.citas = form.value;
@@ -72,7 +98,7 @@ export class CitasPage implements OnInit {
 
     this.api.saveCitas(this.citas).subscribe(      
       (data) => { // Success     
-        console.log("citas en el metodo save", this.citas);
+        console.log("citas en el metodo guardar", this.citas);
         console.log("Datos formulario", data);
         console.log('Datos obtenidos: ');    
         console.log('Fecha: ', form.value.Fecha);
@@ -82,8 +108,9 @@ export class CitasPage implements OnInit {
 
       },
       (error) =>{
-        console.error("Error al guardar",error);
+        
       });
+      
       this.navCtrl.navigateForward( ['/home', this.user_id]);
     }
 
@@ -109,6 +136,11 @@ export class CitasPage implements OnInit {
     var sec = timeObject.getSeconds().toString();    
 
     return this.formatTime = hour + ':' + min + ':' + sec;    
+  }
+
+  closeCita() {
+    this.user_id =this.activateRoute.snapshot.paramMap.get('id');
+    this.navCtrl.navigateForward( ['/home', this.user_id]);
   }
 
 }
